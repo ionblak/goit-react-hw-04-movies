@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
-import getPopularFilms from '../api/apiServices';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getPopularFilms } from '../api/apiServices';
+import Content from '../Component/Content';
 
-class HomePage extends Component {
-  state = {
-    films: [],
-  };
+const HomePage = () => {
+  const [films, setFilms] = useState([]);
 
-  async componentDidMount() {
-    const response = await getPopularFilms();
-    this.setState({ films: response });
-  }
+  useEffect(() => {
+    getPopularFilms().then(data => setFilms(data));
+  }, []);
 
-  render() {
-    return <h1>Home page</h1>;
-  }
-}
+  return (
+    <Content>
+      <h1>Trending today</h1>
+      <ul>
+        {films.map(({ id, title }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`}>{title}</Link>
+          </li>
+        ))}
+      </ul>
+    </Content>
+  );
+};
 
 export default HomePage;

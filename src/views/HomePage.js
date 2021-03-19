@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getPopularFilms } from '../api/apiServices';
 import Content from '../Component/Content';
+import MoviesList from '../Component/MoviesList';
 
 const HomePage = () => {
-  const [films, setFilms] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    getPopularFilms().then(data => setFilms(data));
+    getPopularFilms().then(data => setMovies(data));
   }, []);
 
   return (
     <Content>
       <h1>Trending today</h1>
-      <ul>
-        {films.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
-          </li>
-        ))}
-      </ul>
+      <MoviesList movies={movies} />
     </Content>
   );
 };

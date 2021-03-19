@@ -40,5 +40,15 @@ const getFilmById = async id => {
     return null;
   }
 };
+const getFilmInformationById = async (id, url) => {
+  try {
+    const { data } = await axios.get(`/movie/${id}/${url}`);
 
-export { getPopularFilms, getFilms, getFilmById };
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export { getPopularFilms, getFilms, getFilmById, getFilmInformationById };

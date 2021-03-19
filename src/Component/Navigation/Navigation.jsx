@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import routes from '../../routes';
 
 const useStyles = createUseStyles({
   list: {
@@ -25,27 +26,29 @@ const useStyles = createUseStyles({
 const Navigation = () => {
   const classes = useStyles();
   return (
-    <ul className={classes.list}>
-      <li className={classes.item}>
-        <NavLink
-          exact
-          to="/"
-          className={classes.navLink}
-          activeClassName={classes.isActive}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li className={classes.item}>
-        <NavLink
-          className={classes.navLink}
-          activeClassName={classes.isActive}
-          to="/movies"
-        >
-          Movies
-        </NavLink>
-      </li>
-    </ul>
+    <nav>
+      <ul className={classes.list}>
+        <li className={classes.item}>
+          <NavLink
+            exact
+            to={routes.home}
+            className={classes.navLink}
+            activeClassName={classes.isActive}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className={classes.item}>
+          <NavLink
+            className={classes.navLink}
+            activeClassName={classes.isActive}
+            to={routes.movies}
+          >
+            Movies
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { getFilms } from '../api/apiServices';
 import Content from '../Component/Content';
 import MoviesList from '../Component/MoviesList';
-
 import queryString from 'query-string';
 
-const MoviesPage = ({ history, location, match }) => {
+const MoviesPage = ({ history, location }) => {
   const [searchValue, setSearchValue] = useState('');
   const [filmsList, setFilmsList] = useState([]);
 
@@ -18,6 +17,7 @@ const MoviesPage = ({ history, location, match }) => {
     const parse = queryString.parse(location.search);
     setSearchValue(parse.query);
     getFilms(parse.query).then(data => setFilmsList(data));
+    // eslint-disable-next-line
   }, []);
 
   const handleSearchMovies = e => {
@@ -42,7 +42,7 @@ const MoviesPage = ({ history, location, match }) => {
         ></input>
         <button type="submit">Search</button>
       </form>
-      {filmsList.length !== 0 && <MoviesList movies={filmsList} />}
+      {filmsList.length > 0 && <MoviesList movies={filmsList} />}
     </Content>
   );
 };

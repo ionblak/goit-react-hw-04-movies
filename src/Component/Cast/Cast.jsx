@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getFilmInformationById } from '../../api/apiServices';
+import DefaulImage from '../../images/noImage.png';
 
 const CAST_URL = 'credits';
 
@@ -16,11 +17,16 @@ const Cast = ({ match }) => {
     <ul>
       {castList.map(item => (
         <li key={item?.id}>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${item?.profile_path}`}
-            alt={item?.name}
-            width="80px"
-          />
+          {item.profile_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${item?.profile_path}`}
+              alt={item?.name}
+              width="80px"
+            />
+          ) : (
+            <img src={DefaulImage} alt="default" width="80px" />
+          )}
+
           <h2>{item?.name}</h2>
           <p>Character: {item.character}</p>
         </li>

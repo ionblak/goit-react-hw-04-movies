@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
 const Content = ({ children }) => {
   const classes = useStyles();
 
-  return <div className={classes.content}>{children}</div>;
+  return <section className={classes.content}>{children}</section>;
 };
+
 export default Content;

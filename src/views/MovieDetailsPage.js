@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getFilmById } from '../api/apiServices';
 import Content from '../Component/Content';
 import MovieCard from '../Component/MoviesCard';
+import { Button } from 'react-bootstrap';
 import routes from '../routes';
 
 import Loader from 'react-loader-spinner';
@@ -22,9 +23,9 @@ const MovieDetailsPage = ({ match, history, location }) => {
 
   return (
     <Content>
-      <button type="button" onClick={handleGoBack}>
+      <Button variant="secondary" onClick={handleGoBack}>
         Go back
-      </button>
+      </Button>
       {movie?.title ? (
         <MovieCard movie={movie} />
       ) : (

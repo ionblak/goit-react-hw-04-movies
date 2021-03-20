@@ -1,9 +1,9 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
 
-import Navigation from './Component/Navigation';
+import NavBar from './Component/NavBar';
 import routes from './routes';
-import { createUseStyles } from 'react-jss';
+// import { createUseStyles } from 'react-jss';
 
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -18,17 +18,17 @@ const MoviesPage = lazy(() =>
   import('./views/MoviesPage' /* webpackChunkName: "MoviesPage" */),
 );
 
-const useStyles = createUseStyles({
-  App: {
-    display: 'flex',
-  },
-});
+// const useStyles = createUseStyles({
+//   App: {
+//     display: 'flex',
+//   },
+// });
 
 function App() {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
-    <div className={classes.App}>
-      <Navigation />
+    <div>
+      <NavBar />
       <Suspense
         fallback={<Loader type="Rings" color="#FFF" height={80} width={80} />}
       >
